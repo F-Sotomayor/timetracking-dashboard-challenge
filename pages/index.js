@@ -1,9 +1,9 @@
 import { Flex, Image, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import Card from "../components/Card";
-import mock from "../data.json";
 import React from "react";
+import serverApi from "../pages/api/server.js";
 
-export default function Home() {
+export default function Home({ data }) {
   const [timeframe, setTimeframe] = React.useState("daily");
   const [opac, setOpac] = React.useState(0);
 
@@ -97,7 +97,7 @@ export default function Home() {
           marginTop={{ base: 6, md: 0 }}
           marginBottom={{ base: 8, md: 0 }}
         >
-          {mock.map((card) => {
+          {data.map((card) => {
             return (
               <Stack key={card.title}>
                 <Card
@@ -126,4 +126,13 @@ export default function Home() {
       </Flex>
     </Stack>
   );
+}
+
+export async function getStaticProps() {
+  const data = await serverApi.list();
+  return {
+    props: {
+      data,
+    },
+  };
 }
