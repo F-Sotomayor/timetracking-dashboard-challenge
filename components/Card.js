@@ -74,7 +74,12 @@ export default function Card({ type, currentHours, lastHours, bg, opacit }) {
           direction={{ base: "row", md: "column" }}
           flex={{ base: 1, md: 1 }}
         >
-          <Flex flex={0.8} color="white" align="center" fontSize={48}>
+          <Flex
+            flex={0.8}
+            color="white"
+            align="center"
+            fontSize={{ base: 36, md: 48 }}
+          >
             {currentHours}hrs
           </Flex>
           <Flex
